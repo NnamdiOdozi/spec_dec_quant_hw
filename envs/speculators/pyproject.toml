@@ -1,0 +1,17 @@
+[project]
+name = "hw3-speculators-env"
+version = "0.1.0"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "speculators",
+  "ipykernel",
+  "datasets",
+  "transformers",
+  "accelerate",
+]
+
+[tool.uv]
+package = false
+
+[tool.uv.sources]
+speculators = { path = "../../external/speculators", editable = true }

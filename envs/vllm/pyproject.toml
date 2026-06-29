@@ -1,0 +1,12 @@
+[project]
+name = "hw3-vllm-env"
+version = "0.1.0"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "vllm==0.20.0",
+  "fastapi<0.137",
+  "ipykernel",
+]
+
+[tool.uv]
+package = false
