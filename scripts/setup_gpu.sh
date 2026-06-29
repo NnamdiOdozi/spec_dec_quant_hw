@@ -18,8 +18,8 @@
 
 set -euo pipefail
 
-: "${REPO_URL:?ERROR: REPO_URL must be set. Example: REPO_URL=https://github.com/user/repo.git}"
-
+#: "${REPO_URL:?ERROR: REPO_URL must be set. Example: REPO_URL=https://github.com/user/repo.git}"
+REPO_URL="${REPO_URL:-https://github.com/NnamdiOdozi/spec_dec_quant_hw.git}"
 PROJECT_DIR="${PROJECT_DIR:-$HOME/spec_dec_quant_hw}"
 RUN_ENV_SETUP="${RUN_ENV_SETUP:-1}"
 
