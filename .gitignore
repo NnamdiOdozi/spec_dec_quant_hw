@@ -140,7 +140,7 @@ speculators_venv/
 vllm_venv/
 comp_venv/
 externals/
-outputs/
+
 
 
 ENV/
@@ -214,7 +214,7 @@ old_batches/
 git_summaries/
 dw_batch_output/
 # Application logs
-logs/
+
 
 # Test outputs
 tests/
@@ -237,3 +237,22 @@ LLM Architecture/Homework_2/data/cifar-10-python.tar.gz
 # ssh keys
 nebius_ssh_key
 nebius_ssh_key.pub
+
+# ---- Heavy generated artifacts ----
+outputs/eagle3_qwen3_8b_sharegpt/
+outputs/checkpoints/
+outputs/models/
+outputs/hidden_states/
+outputs/data/
+
+# Common large model / tensor files anywhere
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.gguf
+*.npy
+*.npz
+*.arrow
+*.parquet

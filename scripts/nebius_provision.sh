@@ -32,7 +32,7 @@ set -Eeuo pipefail
 # Configuration
 # ---------------------------------------------------------------------------
 
-DEFAULT_VM_NAME="$(basename "${PROJECT_DIR:-$(pwd)}")-h100"
+DEFAULT_VM_NAME="$(basename "${PROJECT_DIR:-$(pwd)}" | tr '_' '-')-h100"
 VM_NAME="${VM_NAME:-$DEFAULT_VM_NAME}"
 VM_HOST_ALIAS="${VM_HOST_ALIAS:-nebius-vm}"
 VM_USER="${VM_USER:-nnamd}"
@@ -75,7 +75,7 @@ PROJECT_ID="${PROJECT_ID:-}"
 # ---------------------------------------------------------------------------
 
 PLATFORM="${PLATFORM:-gpu-h100-sxm}"
-PRESET="${PRESET:-1gpu-16vcpu-500gb}"
+PRESET="${PRESET:-1gpu-16vcpu-200gb}"
 
 BOOT_DISK_NAME="${BOOT_DISK_NAME:-${VM_NAME}-boot}"
 BOOT_DISK_SIZE_GIB="${BOOT_DISK_SIZE_GIB:-500}"
