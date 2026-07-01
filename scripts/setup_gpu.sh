@@ -23,13 +23,13 @@ REPO_URL="${REPO_URL:-https://github.com/NnamdiOdozi/spec_dec_quant_hw.git}"
 PROJECT_DIR="${PROJECT_DIR:-$HOME/spec_dec_quant_hw}"
 RUN_ENV_SETUP="${RUN_ENV_SETUP:-1}"
 
-LOG_DIR="${PROJECT_DIR:-$HOME/spec_dec_quant_hw}/logs"
-mkdir -p "$LOG_DIR"
-LOG_FILE="$LOG_DIR/setup_gpu_$(date +%Y%m%d_%H%M%S).log"
+EARLY_LOG_DIR="/tmp/setup_gpu_logs"
+mkdir -p "$EARLY_LOG_DIR"
+EARLY_LOG_FILE="$EARLY_LOG_DIR/setup_gpu_$(date +%Y%m%d_%H%M%S).log"
 
-exec > >(tee -a "$LOG_FILE") 2>&1
+exec > >(tee -a "$EARLY_LOG_FILE") 2>&1
 
-echo "Logging to: $LOG_FILE"
+echo "Logging to: $EARLY_LOG_FILE (will move to project dir after clone)"
 
 
 echo "=== GPU setup starting ==="
@@ -91,11 +91,26 @@ echo "=== Clone or pull repo ==="
 if [ -d "$PROJECT_DIR/.git" ]; then
   cd "$PROJECT_DIR"
   git pull
+elif [ -d "$PROJECT_DIR" ]; then
+  echo "Directory exists without .git — cloning into it"
+  cd "$PROJECT_DIR"
+  git init
+  git remote add origin "$REPO_URL"
+  git fetch origin
+  git checkout -t origin/main
 else
   mkdir -p "$(dirname "$PROJECT_DIR")"
   git clone "$REPO_URL" "$PROJECT_DIR"
   cd "$PROJECT_DIR"
 fi
+
+echo "=== Moving logs into project dir ==="
+LOG_DIR="$PROJECT_DIR/logs"
+mkdir -p "$LOG_DIR"
+cp "$EARLY_LOG_FILE" "$LOG_DIR/"
+LOG_FILE="$LOG_DIR/$(basename "$EARLY_LOG_FILE")"
+exec > >(tee -a "$LOG_FILE") 2>&1
+echo "Logging now at: $LOG_FILE"
 
 echo "=== Current git commit ==="
 git rev-parse --short HEAD || true
