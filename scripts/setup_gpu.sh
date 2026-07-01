@@ -43,6 +43,36 @@ git config --global user.name "NnamdiOdozi"
 git config --global user.email "NnamdiOdozi@users.noreply.github.com"
 git config --global pull.rebase true
 
+echo "=== Git shortcuts (ac, acp) ==="
+GIT_SHORTCUT_BLOCK='
+# Git shortcuts
+# git ac  -m "message" = add all, commit (no push)
+# git acp -m "message" = add all, commit, push (handles first push automatically)
+git() {
+    if [[ "$1" == "ac" ]]; then
+        shift
+        command git add . && command git commit "$@"
+    elif [[ "$1" == "acp" ]]; then
+        shift
+        command git add . && command git commit "$@" && {
+            if command git rev-parse --abbrev-ref --symbolic-full-name @{u} &>/dev/null; then
+                command git push
+            else
+                command git push -u origin "$(command git rev-parse --abbrev-ref HEAD)"
+            fi
+        }
+    else
+        command git "$@"
+    fi
+}'
+
+if ! grep -q 'git acp' "$HOME/.bashrc" 2>/dev/null; then
+  echo "$GIT_SHORTCUT_BLOCK" >> "$HOME/.bashrc"
+  echo "Git shortcuts added to ~/.bashrc"
+else
+  echo "Git shortcuts already in ~/.bashrc"
+fi
+
 echo "=== Install system basics ==="
 sudo apt-get update -y
 sudo apt-get install -y \
