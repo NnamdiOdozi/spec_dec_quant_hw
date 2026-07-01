@@ -1,0 +1,57 @@
+_wandb:
+    value:
+        cli_version: 0.28.0
+        e:
+            uwocweeoq0crcmnz7z2d8quz3ilth957:
+                cpu_count: 8
+                cpu_count_logical: 16
+                cudaVersion: "13.0"
+                disk:
+                    /:
+                        total: "518933680128"
+                        used: "218551025664"
+                email: nnamdi.odozi@yahoo.com
+                executable: /home/nnamd/spec_dec_quant_hw/speculators_venv/bin/python
+                git:
+                    commit: a16a4e8b1e728014b1ba9b43d7b2acf4aa8cc653
+                    remote: https://github.com/NnamdiOdozi/spec_dec_quant_hw.git
+                gpu: NVIDIA H100 80GB HBM3
+                gpu_count: 1
+                gpu_nvidia:
+                    - architecture: Hopper
+                      cudaCores: 16896
+                      memoryTotal: "85520809984"
+                      name: NVIDIA H100 80GB HBM3
+                      uuid: GPU-f916d31c-0adf-3e10-1c49-18a0915a632e
+                host: computeinstance-e00z2dkz4fzg601642
+                memory:
+                    total: "211069927424"
+                os: Linux-6.11.0-1016-nvidia-x86_64-with-glibc2.39
+                program: <stdin>
+                python: CPython 3.12.13
+                root: /home/nnamd/spec_dec_quant_hw
+                startedAt: "2026-07-01T12:32:34.425059Z"
+                writerId: uwocweeoq0crcmnz7z2d8quz3ilth957
+        m: []
+        python_version: 3.12.13
+        t:
+            "3":
+                - 2
+                - 13
+                - 16
+            "4": 3.12.13
+            "5": 0.28.0
+            "12": 0.28.0
+            "13": linux-x86_64
+base_model:
+    value: Qwen/Qwen3-8B
+best_checkpoint:
+    value: /home/nnamd/spec_dec_quant_hw/outputs/checkpoints/eagle3_qwen3_8b_sharegpt_full_20260701_110123/4
+checkpoint_run_dir:
+    value: /home/nnamd/spec_dec_quant_hw/outputs/checkpoints/eagle3_qwen3_8b_sharegpt_full_20260701_110123
+data_dir:
+    value: /home/nnamd/spec_dec_quant_hw/outputs/eagle3_qwen3_8b_sharegpt_full_20260701_110123
+include_all_checkpoints:
+    value: false
+include_data:
+    value: false

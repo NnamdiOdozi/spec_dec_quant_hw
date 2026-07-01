@@ -8,6 +8,8 @@ dependencies = [
   "datasets",
   "transformers",
   "accelerate",
+  "vllm==0.20.0",
+  "fastapi<0.137",
 ]
 
 [tool.uv]

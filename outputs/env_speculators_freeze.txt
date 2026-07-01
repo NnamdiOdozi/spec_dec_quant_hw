@@ -91,7 +91,7 @@ setuptools==82.0.1
 shellingham==1.5.4
 six==1.17.0
 sniffio==1.3.1
--e file:///home/nodozi/projects/NEBIUS_MAR_2026/spec_dec+quantization_hw/external/speculators
+-e file:///home/nnamd/spec_dec_quant_hw/external/speculators
 stack-data==0.6.3
 sympy==1.14.0
 tokenizers==0.22.2

@@ -36,6 +36,7 @@ grep -qxF "logs/" "$ROOT/.gitignore" || echo "logs/" >> "$ROOT/.gitignore"
 MODEL_ID="${MODEL_ID:-Qwen/Qwen3-8B}"
 MAX_SAMPLES="${MAX_SAMPLES:-3000}"
 SEQ_LENGTH="${SEQ_LENGTH:-2048}"
+VLLM_MAX_MODEL_LEN="${VLLM_MAX_MODEL_LEN:-$((SEQ_LENGTH + 64))}"
 CONCURRENCY="${CONCURRENCY:-32}"
 PORT="${PORT:-8000}"
 GPU_MEMORY_UTILIZATION="${GPU_MEMORY_UTILIZATION:-0.90}"
@@ -59,6 +60,7 @@ echo "Output dir:   $OUTPUT_DIR"
 echo "Hidden dir:   $HIDDEN_STATES_DIR"
 echo "Max samples:  $MAX_SAMPLES"
 echo "Seq length:   $SEQ_LENGTH"
+echo "vLLM max len: $VLLM_MAX_MODEL_LEN"
 echo "Concurrency:  $CONCURRENCY"
 echo
 
@@ -95,7 +97,7 @@ else
   VLLM_LOG="$LOG_DIR/hidden_state_vllm_$(date +%Y%m%d_%H%M%S).log"
 
   tmux new-session -d -s "$TMUX_SESSION" \
-    "cd '$SPEC_DIR' && CUDA_VISIBLE_DEVICES='${CUDA_VISIBLE_DEVICES:-0}' '$SPEC_PY' scripts/launch_vllm.py '$MODEL_ID' --hidden-states-path '$TMP_HIDDEN_STATES_DIR' -- --port '$PORT' --gpu-memory-utilization '$GPU_MEMORY_UTILIZATION' --max-model-len '$SEQ_LENGTH' > '$VLLM_LOG' 2>&1"
+    "cd '$SPEC_DIR' && CUDA_VISIBLE_DEVICES='${CUDA_VISIBLE_DEVICES:-0}' '$SPEC_PY' scripts/launch_vllm.py '$MODEL_ID' --hidden-states-path '$TMP_HIDDEN_STATES_DIR' -- --port '$PORT' --gpu-memory-utilization '$GPU_MEMORY_UTILIZATION' --max-model-len '$VLLM_MAX_MODEL_LEN' > '$VLLM_LOG' 2>&1"
 
   echo "Started tmux session: $TMUX_SESSION"
   echo "vLLM log: $VLLM_LOG"

@@ -255,4 +255,11 @@ outputs/data/
 *.npy
 *.npz
 *.arrow
-*.parquet
+*.parquetspeculators_venv/
+vllm_venv/
+comp_venv/
+external/
+outputs/
+.venv/
+output/
+logs/
