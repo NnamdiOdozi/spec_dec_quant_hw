@@ -1,4 +1,58 @@
 #!/usr/bin/env bash
+
+
+# Upload trained EAGLE-3 artifacts to Hugging Face and/or Weights & Biases.
+#
+# Secrets:
+#   Keep these in .env, not in this script:
+#     HF_TOKEN=...
+#     WANDB_API_KEY=...
+#
+# Known working values for this project:
+#   HF model repo:
+#     nodozi/eagle3-qwen3-8b-sharegpt
+#
+#   W&B entity:
+#     team-ave
+#
+#   W&B project:
+#     spec-dec-quant-hw
+#
+# Typical commands:
+#
+#   1. Dry run: check paths, do not upload
+#
+#      DRY_RUN=1 \\
+#      UPLOAD_TO_HF=1 \\
+#      UPLOAD_TO_WANDB=1 \\
+#      HF_MODEL_REPO_ID=nodozi/eagle3-qwen3-8b-sharegpt \\
+#      WANDB_ENTITY=team-ave \\
+#      WANDB_PROJECT=spec-dec-quant-hw \\
+#      bash scripts/upload_artifacts.sh
+#
+#   4. Upload to both
+#
+#      UPLOAD_TO_HF=1 \\
+#      UPLOAD_TO_WANDB=1 \\
+#      HF_MODEL_REPO_ID=nodozi/eagle3-qwen3-8b-sharegpt \\
+#      WANDB_ENTITY=team-ave \\
+#      WANDB_PROJECT=spec-dec-quant-hw \\
+#      bash scripts/upload_artifacts.sh
+#
+# What gets uploaded by default:
+#   - best EAGLE-3 checkpoint
+#   - run manifest
+#   - logs and environment/audit files
+#
+# What does NOT get uploaded by default:
+#   - the prepared hidden-state dataset, because it is very large
+#
+# To include the prepared hidden-state dataset, add:
+#
+#      INCLUDE_DATA=1
+#
+# Be careful: in this run the hidden-state dataset was about 122GB.
+
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
