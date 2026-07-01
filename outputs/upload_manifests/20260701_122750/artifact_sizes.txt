@@ -1,0 +1,3 @@
+122G	/home/nnamd/spec_dec_quant_hw/outputs/eagle3_qwen3_8b_sharegpt_full_20260701_110123
+3.0G	/home/nnamd/spec_dec_quant_hw/outputs/checkpoints/eagle3_qwen3_8b_sharegpt_full_20260701_110123/4
+12G	/home/nnamd/spec_dec_quant_hw/outputs/checkpoints/eagle3_qwen3_8b_sharegpt_full_20260701_110123

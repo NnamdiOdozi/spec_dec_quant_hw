@@ -1,0 +1,11 @@
+speculators_venv:
+Python 3.12.13
+/home/nnamd/spec_dec_quant_hw/speculators_venv/bin/python
+
+vllm_venv:
+Python 3.12.13
+/home/nnamd/spec_dec_quant_hw/vllm_venv/bin/python
+
+comp_venv:
+Python 3.12.13
+/home/nnamd/spec_dec_quant_hw/comp_venv/bin/python

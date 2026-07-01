@@ -1,0 +1,50 @@
+Date:
+Wed Jul  1 09:38:10 UTC 2026
+
+Hostname:
+computeinstance-e00z2dkz4fzg601642
+
+User:
+nnamd
+
+Project dir:
+/home/nnamd/spec_dec_quant_hw
+
+Git commit:
+a16a4e8b1e728014b1ba9b43d7b2acf4aa8cc653
+
+Disk:
+Filesystem      Size  Used Avail Use% Mounted on
+tmpfs            20G  2.3M   20G   1% /run
+/dev/vda1       484G   19G  465G   4% /
+tmpfs            99G     0   99G   0% /dev/shm
+tmpfs           5.0M     0  5.0M   0% /run/lock
+/dev/vda16      881M  258M  562M  32% /boot
+/dev/vda15      105M  6.2M   99M   6% /boot/efi
+cloud-metadata 1008G   20K 1008G   1% /mnt/cloud-metadata
+tmpfs            20G   20K   20G   1% /run/user/1001
+
+GPU:
+Wed Jul  1 09:38:10 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.159.04             Driver Version: 580.159.04     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA H100 80GB HBM3          On  |   00000000:8D:00.0 Off |                    0 |
+| N/A   31C    P0             71W /  700W |       0MiB /  81559MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+
+uv:
+uv 0.11.26 (x86_64-unknown-linux-gnu)

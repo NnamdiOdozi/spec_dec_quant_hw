@@ -258,7 +258,7 @@ outputs/data/
 *.parquet
 speculators_venv/
 external/
-outputs/
+
 .venv/
 
 

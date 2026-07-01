@@ -1,0 +1,8 @@
+timestamp=20260701_122443
+root=/home/nnamd/spec_dec_quant_hw
+data_dir=/home/nnamd/spec_dec_quant_hw/outputs/eagle3_qwen3_8b_sharegpt_full_20260701_110123
+best_checkpoint=/home/nnamd/spec_dec_quant_hw/outputs/checkpoints/eagle3_qwen3_8b_sharegpt_full_20260701_110123/checkpoint_best
+best_checkpoint_real=/home/nnamd/spec_dec_quant_hw/outputs/checkpoints/eagle3_qwen3_8b_sharegpt_full_20260701_110123/4
+checkpoint_run_dir=/home/nnamd/spec_dec_quant_hw/outputs/checkpoints/eagle3_qwen3_8b_sharegpt_full_20260701_110123
+git_commit=a16a4e8b1e728014b1ba9b43d7b2acf4aa8cc653
+hostname=computeinstance-e00z2dkz4fzg601642
