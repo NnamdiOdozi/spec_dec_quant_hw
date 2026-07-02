@@ -1,0 +1,30 @@
+# Rubric score check
+
+Rubric:
+- Speculative decoding > 1250 output tok/s: 25 points
+- FP8 dynamic quantization > 1550 output tok/s: 10 points
+- Best FP8 + speculative decoding > 1750 output tok/s: 15 points
+
+Clean results:
+- Speculative decoding: 1286.09 output tok/s -> passes >1250 -> 25/25
+- FP8 dynamic quantization: 1618.27 output tok/s -> passes >1550 -> 10/10
+- FP8 + speculative decoding: 1284.03 output tok/s -> below >1750 -> 0/15
+
+Current rubric score:
+- 35/50
+
+FP8 + speculative tuning attempted:
+- Original/default: 1185.81 output tok/s
+- 1 draft token: 1206.84 output tok/s
+- 2 draft tokens: 1284.03 output tok/s
+
+Best FP8 + speculative result:
+- 2 draft tokens
+- Output token throughput: 1284.03 tok/s
+- Acceptance rate: 22.45%
+- Acceptance length: 1.45
+- Position 0 acceptance: 36.03%
+- Position 1 acceptance: 8.87%
+
+Interpretation:
+The best FP8 + speculative run used 2 draft tokens and improved on the default FP8 + speculative setting, but it did not beat the 1750 tok/s scoring threshold. FP8 alone remained the strongest configuration, achieving 1618.27 tok/s.

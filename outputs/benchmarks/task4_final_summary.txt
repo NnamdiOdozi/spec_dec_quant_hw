@@ -8,33 +8,22 @@ Benchmark setup:
 - Endpoint: /v1/completions
 - Benchmark tool: vllm bench serve
 
-## Results table
-
 | Configuration | Successful | Failed | Output tok/s | Request/s | Mean TTFT ms | Median TTFT ms | P99 TTFT ms | Mean TPOT ms | Mean ITL ms | Acceptance rate | Acceptance length |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | Baseline | 80 | 0 | 1128.40 | 4.41 | 25.90 | 26.96 | 28.63 | 7.01 | 7.01 | n/a | n/a |
 | EAGLE speculative | 80 | 0 | 1286.09 | 5.02 | 26.88 | 26.04 | 35.29 | 5.94 | 8.67 | 15.36% | 1.46 |
 | FP8 | 80 | 0 | 1618.27 | 6.32 | 21.49 | 20.93 | 26.14 | 4.87 | 4.87 | n/a | n/a |
-| FP8 + EAGLE speculative | 80 | 0 | 1185.81 | 4.63 | 129.42 | 26.20 | 1072.83 | 5.97 | 8.69 | 15.27% | 1.46 |
+| FP8 + EAGLE speculative, best tuned run | 80 | 0 | 1284.03 | 5.02 | 67.81 | 24.97 | 464.93 | 5.70 | 8.25 | 22.45% | 1.45 |
 
-## Speedup versus baseline by output-token throughput
-
+Speedup versus baseline:
 - EAGLE speculative: 1286.09 / 1128.40 = approximately 1.14x.
 - FP8: 1618.27 / 1128.40 = approximately 1.43x.
-- FP8 + EAGLE speculative: 1185.81 / 1128.40 = approximately 1.05x.
+- FP8 + EAGLE speculative: 1284.03 / 1128.40 = approximately 1.14x.
 
-## Interpretation
+Rubric outcome:
+- Speculative decoding exceeds 1250 tok/s: yes.
+- FP8 exceeds 1550 tok/s: yes.
+- FP8 + speculative exceeds 1750 tok/s: no.
 
-FP8 was the best-performing configuration in this run. It improved output-token throughput from 1128.40 tok/s to 1618.27 tok/s, or about 1.43x baseline throughput. It also reduced mean TPOT from 7.01 ms to 4.87 ms and mean ITL from 7.01 ms to 4.87 ms.
-
-EAGLE speculative decoding improved output-token throughput on the non-FP8 model from 1128.40 tok/s to 1286.09 tok/s, or about 1.14x. However, the acceptance rate was low at about 15%, with acceptance length around 1.46. Position-level acceptance fell quickly after the first drafted token.
-
-FP8 + EAGLE speculative was successful, but it was slower than FP8 alone. This suggests that, for this trained drafter and benchmark setting, the speculative-decoding overhead outweighed the benefit when combined with FP8. The low acceptance rate is the likely explanation.
-
-## Evidence files
-
-- Baseline: outputs/benchmarks/baseline_bench_latest.txt
-- EAGLE speculative: outputs/benchmarks/speculative_bench_latest.txt
-- FP8: outputs/benchmarks/fp8_bench_latest.txt
-- FP8 + EAGLE speculative: outputs/benchmarks/fp8_speculative_bench_latest.txt
-- FP8 quantization log: logs/quantize_fp8_20260702_092702.log
+Interpretation:
+FP8 alone was the best-performing configuration in this run. EAGLE speculative decoding improved throughput on the base model, but the trained drafter had low acceptance beyond the first drafted token. Tuning FP8 + speculative to 2 draft tokens improved the default FP8 + speculative result, but it still did not outperform FP8 alone or reach the 1750 tok/s threshold.
