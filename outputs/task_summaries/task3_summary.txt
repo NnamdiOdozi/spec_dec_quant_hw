@@ -1,0 +1,35 @@
+# Task 3 summary: baseline vs EAGLE/speculative serving
+
+Baseline benchmark:
+- Successful requests: 80
+- Failed requests: 0
+- Output token throughput: 1128.40 tok/s
+- Request throughput: 4.41 req/s
+- Mean TTFT: 25.90 ms
+- Mean TPOT: 7.01 ms
+- Mean ITL: 7.01 ms
+
+Speculative / EAGLE benchmark:
+- Successful requests: 80
+- Failed requests: 0
+- Output token throughput: 1286.09 tok/s
+- Request throughput: 5.02 req/s
+- Mean TTFT: 26.88 ms
+- Mean TPOT: 5.94 ms
+- Mean ITL: 8.67 ms
+- Acceptance rate: 15.36%
+- Acceptance length: 1.46
+- Position 0 acceptance: 36.18%
+- Position 1 acceptance: 8.59%
+- Position 2 acceptance: 1.30%
+
+Comparison:
+- Output token throughput improved from 1128.40 tok/s to 1286.09 tok/s.
+- Throughput speedup: approximately 1.14x.
+- TPOT improved from 7.01 ms to 5.94 ms.
+- TTFT stayed broadly similar: 25.90 ms baseline vs 26.88 ms speculative.
+- ITL worsened from 7.01 ms to 8.67 ms.
+- The acceptance rate was low, so the drafter was only modestly aligned with the target model.
+
+Conclusion:
+Speculative decoding produced a modest throughput improvement of about 14%, but with low token acceptance and worse inter-token latency. This is a valid Task 3 result and should be reported with the acceptance-rate caveat.
