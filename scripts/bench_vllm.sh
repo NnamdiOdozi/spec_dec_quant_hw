@@ -33,6 +33,11 @@ grep -qxF "logs/" "$ROOT/.gitignore" || echo "logs/" >> "$ROOT/.gitignore"
 
 PORT="${PORT:-8000}"
 MODEL_FOR_BENCH="${MODEL_FOR_BENCH:-Qwen/Qwen3-8B}"
+# The model name sent to the server and the tokenizer used by the benchmark
+# can differ. This matters for EAGLE/speculative serving, where the server
+# model id may be a local checkpoint path, but the tokenizer should still be
+# the base model tokenizer.
+TOKENIZER_FOR_BENCH="${TOKENIZER_FOR_BENCH:-$MODEL_FOR_BENCH}"
 DATASET_NAME="${DATASET_NAME:-hf}"
 DATASET_PATH="${DATASET_PATH:-philschmid/mt-bench}"
 MAX_CONCURRENCY="${MAX_CONCURRENCY:-8}"
@@ -63,6 +68,7 @@ fi
   echo "date=$(date --iso-8601=seconds)"
   echo "git_commit=$(git rev-parse HEAD 2>/dev/null || true)"
   echo "model_for_bench=$MODEL_FOR_BENCH"
+  echo "tokenizer_for_bench=$TOKENIZER_FOR_BENCH"
   echo "base_url=http://localhost:${PORT}"
   echo "dataset_name=$DATASET_NAME"
   echo "dataset_path=$DATASET_PATH"
@@ -74,6 +80,7 @@ fi
 
 "$VLLM_BIN" bench serve \
   --model "$MODEL_FOR_BENCH" \
+  --tokenizer "$TOKENIZER_FOR_BENCH" \
   --base-url "http://localhost:${PORT}" \
   --dataset-name "$DATASET_NAME" \
   --dataset-path "$DATASET_PATH" \
