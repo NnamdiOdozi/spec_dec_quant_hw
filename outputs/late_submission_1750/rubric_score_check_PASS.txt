@@ -1,0 +1,17 @@
+# Rubric score check after corrected FP8 + speculative run
+
+Rubric:
+- Speculative decoding > 1250 output tok/s: 25 points
+- FP8 dynamic quantization > 1550 output tok/s: 10 points
+- Best FP8 + speculative decoding > 1750 output tok/s: 15 points
+
+Results:
+- Speculative decoding: 1286.09 output tok/s -> passes >1250 -> 25/25
+- FP8 dynamic quantization: 1618.27 output tok/s -> passes >1550 -> 10/10
+- Corrected FP8 + speculative decoding: 1899.4 output tok/s -> passes >1750 -> 15/15
+
+Total:
+- 50/50
+
+Important note:
+The corrected FP8 + speculative result required patching the EAGLE checkpoint config so that the verifier target pointed directly to the FP8 model folder. The earlier environment variable VLLM_TARGET_MODEL_OVERRIDE was ignored by vLLM.
