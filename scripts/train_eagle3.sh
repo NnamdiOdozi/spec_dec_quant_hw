@@ -24,11 +24,6 @@ if [ ! -e "$ROOT/output" ]; then
   ln -s outputs "$ROOT/output"
 fi
 
-touch "$ROOT/.gitignore"
-grep -qxF "outputs/" "$ROOT/.gitignore" || echo "outputs/" >> "$ROOT/.gitignore"
-grep -qxF "output/" "$ROOT/.gitignore" || echo "output/" >> "$ROOT/.gitignore"
-grep -qxF "logs/" "$ROOT/.gitignore" || echo "logs/" >> "$ROOT/.gitignore"
-
 MODEL_ID="${MODEL_ID:-Qwen/Qwen3-8B}"
 DATA_DIR="${DATA_DIR:-$ROOT/outputs/eagle3_qwen3_8b_sharegpt}"
 HIDDEN_STATES_DIR="${HIDDEN_STATES_DIR:-$DATA_DIR/hidden_states}"

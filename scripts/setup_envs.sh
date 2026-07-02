@@ -87,7 +87,6 @@ add_gitignore_line "speculators_venv/"
 add_gitignore_line "vllm_venv/"
 add_gitignore_line "comp_venv/"
 add_gitignore_line "external/"
-add_gitignore_line "outputs/"
 add_gitignore_line ".venv/"
 
 echo "=== Fetch Speculators repo at v0.5.0 ==="
